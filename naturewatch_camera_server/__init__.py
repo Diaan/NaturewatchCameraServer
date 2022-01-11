@@ -9,6 +9,7 @@ from naturewatch_camera_server.CameraController import CameraController
 from naturewatch_camera_server.ChangeDetector import ChangeDetector
 from naturewatch_camera_server.FileSaver import FileSaver
 from flask import Flask
+from flask_cors import CORS
 from naturewatch_camera_server.api import api
 from naturewatch_camera_server.data import data
 from naturewatch_camera_server.static_page import static_page
@@ -20,6 +21,7 @@ def create_app():
     :return: Flask app object
     """
     flask_app = Flask(__name__, static_folder="static/client/build")
+    CORS(flask_app)
     flask_app.register_blueprint(api, url_prefix='/api')
     flask_app.register_blueprint(data, url_prefix='/data')
     flask_app.register_blueprint(static_page)
